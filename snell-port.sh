@@ -20,14 +20,14 @@ if [ -f ${CONF} ]; then
     read -e -p "(默认: 12312):" snell_port
     [[ -z "${snell_port}" ]] && snell_port="12312"
 
-    echo && echo "============================="
-    echo -e "	端口 : ${snell_port} "
-    echo "=============================" && echo
+		echo "============================="
+		echo -e "	端口 : \033[43;35m ${snell_port} \033[0m"
+		echo "============================="
 
   else
-    echo && echo "============================="
-    echo -e "	端口 : 12312 "
-    echo "=============================" && echo
+    echo "============================="
+		echo -e "	端口 : \033[43;35m 12312 \033[0m"
+		echo "============================="
   fi
 
   if [ -z ${snell_obfs} ]; then
@@ -35,37 +35,37 @@ if [ -f ${CONF} ]; then
     read -e -p "(默认: tls):" snell_obfs
     [[ -z "${snell_obfs}" ]] && snell_obfs="tls"
 
-    echo && echo "============================="
-    echo -e "	obfs : ${snell_obfs} "
-    echo "=============================" && echo
+		echo "============================="
+		echo -e "	obfs : \033[43;35m ${snell_obfs} \033[0m"
+		echo "============================="
 
   else
-    echo && echo "============================="
-    echo -e "	obfs : tls "
-    echo "=============================" && echo
+    echo "============================="
+		echo -e "	obfs : \033[43;35m tls \033[0m"
+		echo "============================="
   fi
 
   if [ -z ${PSK} ]; then
     PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16)
     echo "随机生成 psk "
-    echo && echo "============================="
-    echo -e "	PSK : ${PSK} "
-    echo "=============================" && echo
+    echo "============================="
+		echo -e "	PSK : \033[43;35m ${PSK} \033[0m"
+		echo "============================="
 
   else
 
-    echo && echo "============================="
-    echo -e "	PSK : ${PSK} "
-    echo "=============================" && echo
+    echo "============================="
+    echo -e "	PSK : \033[43;35m ${PSK} \033[0m"
+    echo "============================="
 
   fi
-  echo " Snell 配置 "
-  echo && echo "============================="
+  echo -e  "\033[44;35m Snell 配置 \033[0m"
+  echo "============================="
   echo "[snell-server]"
   echo "listen = 0.0.0.0:${snell_port}"
   echo "psk = ${PSK}"
   echo "obfs = ${snell_obfs}"
-  echo "=============================" && echo
+  echo "============================="
 
   mkdir /etc/snell/
   echo "Generating new config..."
