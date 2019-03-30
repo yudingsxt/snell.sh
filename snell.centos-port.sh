@@ -61,7 +61,7 @@ if [ -f ${CONF} ]; then
     echo "============================="
 
   fi
-  echo "\033[44;35m Snell 配置 \033[0m"
+  echo -e  "\033[44;35m Snell 配置 \033[0m"
   echo "============================="
   echo "[snell-server]"
   echo "listen = 0.0.0.0:${snell_port}"
