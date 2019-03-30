@@ -49,7 +49,7 @@ if [ -f ${CONF} ]; then
 
   if [ -z ${PSK} ]; then
     PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16)
-
+    echo "随机生成 psk "
     echo && echo "============================="
 		echo -e "	PSK : ${PSK} "
 		echo "=============================" && echo
@@ -61,6 +61,7 @@ if [ -f ${CONF} ]; then
     echo "=============================" && echo
 
   fi
+  echo " Snell 配置 "
   echo && echo "============================="
   echo "[snell-server]"
   echo "listen = 0.0.0.0:${snell_port}"
