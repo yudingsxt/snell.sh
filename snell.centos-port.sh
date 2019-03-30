@@ -21,22 +21,52 @@ if [ -f ${CONF} ]; then
     echo -e "请输入 Snell 端口 [1-65535]"
     read -e -p "(默认: 12312):" snell_port
     [[ -z "${snell_port}" ]] && snell_port="12312"
-    echo "Using generated snell_port: ${snell_port}"
+
+		echo && echo "========================"
+		echo -e "	端口 : ${Red_background_prefix} ${snell_port} ${Font_color_suffix}"
+		echo "========================" && echo
+
   else
-    echo "Using predefined snell_port: ${snell_port}"
+    echo && echo "========================"
+		echo -e "	端口 : ${Red_background_prefix} 12312 ${Font_color_suffix}"
+		echo "========================" && echo
   fi
+
+  if [ -z ${snell_obfs} ]; then
+    echo -e "请输入 obfs ( tls / http ) "
+    read -e -p "(默认: tls):" snell_obfs
+    [[ -z "${snell_obfs}" ]] && snell_obfs="tls"
+
+		echo && echo "========================"
+		echo -e "	端口 : ${Red_background_prefix} ${snell_obfs} ${Font_color_suffix}"
+		echo "========================" && echo
+
+  else
+    echo && echo "========================"
+		echo -e "	obfs : ${Red_background_prefix} tls ${Font_color_suffix}"
+		echo "========================" && echo
+  fi
+
   if [ -z ${PSK} ]; then
     PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16)
-    echo "Using generated PSK: ${PSK}"
+
+    echo && echo "========================"
+		echo -e "	PSK : ${Red_background_prefix} ${PSK} ${Font_color_suffix}"
+		echo "========================" && echo
+
   else
-    echo "Using predefined PSK: ${PSK}"
+
+    echo && echo "========================"
+    echo -e "	PSK : ${Red_background_prefix} ${PSK} ${Font_color_suffix}"
+    echo "========================" && echo
+
   fi
   mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
   echo "listen = 0.0.0.0:${snell_port}" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
-  echo "obfs = tls" >>${CONF}
+  echo "obfs = ${snell_obfs}" >>${CONF}
 fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
