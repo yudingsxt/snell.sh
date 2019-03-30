@@ -1,18 +1,7 @@
----
-layout: post
-title: VPS上部署Snell
-tags: Surge Snell VPS
-categories: Surge
----
-
-## Snell安装脚本
+# Snell安装脚本
 
 大概也许应该有可能支持自定义端口吧，Centos7上测试可行。
 
-<!-- more -->
-
-* TOC
-{:toc}
 ---
 
 ### 安装
@@ -36,8 +25,6 @@ chmod +x snell.sh
 
 **默认端口号`12312`，如需修改请安装  Snell  时输入端口号**
 
-
-
 ---
 
 ### 卸载
@@ -49,8 +36,6 @@ wget --no-check-certificate -O uninstall-snell.sh https://raw.githubusercontent.
 chmod +x uninstall-snell.sh
 ./uninstall-snell.sh
 ```
-
-
 
 ---
 
@@ -77,8 +62,6 @@ systemctl start snell
 systemctl stop snell
 ```
 
-
-
 ---
 
 ### 捷径
@@ -86,8 +69,6 @@ systemctl stop snell
 照着大佬的脚本撸了个[捷径](https://github.com/ydzydzydz/snell.sh/raw/master/Snell%E5%AE%89%E8%A3%85%26%E5%8D%B8%E8%BD%BD%26%E7%AE%A1%E7%90%86.shortcut)，直接运行即可安装&卸载&查看&管理状态
 
 **但是不能安装时自定义端口，默认端口为`13254`，安装结束后会将 Snell 配置导出到备忘录，复制到 Surge 中即可使用**
-
-
 
 ---
 
@@ -121,14 +102,6 @@ obfs = tls
 ### 效果
 
 <img width="80%" src="https://raw.githubusercontent.com/ydzydzydz/blogphoto/master/snell/1.jpg" />
-
-<style> 
-    .post img{
-	 margin-left: auto;
-     margin-right: auto;
-     display: block
-}
-</style>
 
 ---
 
