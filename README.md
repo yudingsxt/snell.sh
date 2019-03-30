@@ -26,7 +26,7 @@ systemctl restart snell
 ```
 
 
-
+查看运行状态
 ```
 systemctl status snell
 ```
