@@ -93,7 +93,7 @@ psk = x3IBaVj9K6a6PAzF
 obfs = tls
 ```
 
-
+或者将编辑好的[snell-server.conf](https://raw.githubusercontent.com/ydzydzydz/snell.sh/master/snell-server.conf)，通过 ftp 软件上传到对应路径
 
 ---
 
