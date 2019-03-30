@@ -64,7 +64,7 @@ systemctl stop snell
 
 ## 捷径
 
-照着大佬的脚本撸了个捷径，直接运行即可安装&卸载&查看
+照着大佬的脚本撸了个[捷径](https://github.com/ydzydzydz/snell.sh/raw/master/Snell%E5%AE%89%E8%A3%85%26%E5%8D%B8%E8%BD%BD%26%E7%AE%A1%E7%90%86.shortcut)，直接运行即可安装&卸载&查看
 
 但是不能自定义端口，默认端口为`13254`，安装结束后会将 Snell 配置导出到备忘录，复制到 Surge 中即可使用
 
