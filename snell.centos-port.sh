@@ -22,14 +22,14 @@ if [ -f ${CONF} ]; then
     read -e -p "(默认: 12312):" snell_port
     [[ -z "${snell_port}" ]] && snell_port="12312"
 
-		echo && echo "========================"
-		echo -e "	端口 : ${Red_background_prefix} ${snell_port} ${Font_color_suffix}"
-		echo "========================" && echo
+		echo && echo "============================="
+		echo -e "	端口 : ${snell_port} "
+		echo "=============================" && echo
 
   else
-    echo && echo "========================"
-		echo -e "	端口 : ${Red_background_prefix} 12312 ${Font_color_suffix}"
-		echo "========================" && echo
+    echo && echo "============================="
+		echo -e "	端口 : 12312 "
+		echo "=============================" && echo
   fi
 
   if [ -z ${snell_obfs} ]; then
@@ -37,30 +37,37 @@ if [ -f ${CONF} ]; then
     read -e -p "(默认: tls):" snell_obfs
     [[ -z "${snell_obfs}" ]] && snell_obfs="tls"
 
-		echo && echo "========================"
-		echo -e "	端口 : ${Red_background_prefix} ${snell_obfs} ${Font_color_suffix}"
-		echo "========================" && echo
+		echo && echo "============================="
+		echo -e "	obfs : ${snell_obfs} "
+		echo "=============================" && echo
 
   else
-    echo && echo "========================"
-		echo -e "	obfs : ${Red_background_prefix} tls ${Font_color_suffix}"
-		echo "========================" && echo
+    echo && echo "============================="
+		echo -e "	obfs : tls "
+		echo "=============================" && echo
   fi
 
   if [ -z ${PSK} ]; then
     PSK=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 16)
 
-    echo && echo "========================"
-		echo -e "	PSK : ${Red_background_prefix} ${PSK} ${Font_color_suffix}"
-		echo "========================" && echo
+    echo && echo "============================="
+		echo -e "	PSK : ${PSK} "
+		echo "=============================" && echo
 
   else
 
-    echo && echo "========================"
-    echo -e "	PSK : ${Red_background_prefix} ${PSK} ${Font_color_suffix}"
-    echo "========================" && echo
+    echo && echo "============================="
+    echo -e "	PSK : ${PSK} "
+    echo "=============================" && echo
 
   fi
+  echo && echo "============================="
+  echo "[snell-server]"
+  echo "listen = 0.0.0.0:${snell_port}"
+  echo "psk = ${PSK}"
+  echo "obfs = ${snell_obfs}"
+  echo "=============================" && echo
+
   mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
