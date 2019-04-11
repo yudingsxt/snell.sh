@@ -31,7 +31,7 @@ if [ -f ${CONF} ]; then
   fi
 
   if [ -z ${snell_obfs} ]; then
-    echo -e "请输入 obfs ( tls / http ) "
+    echo -e "请输入 obfs ( tls / http / off ) "
     read -e -p "(默认: tls):" snell_obfs
     [[ -z "${snell_obfs}" ]] && snell_obfs="tls"
 
