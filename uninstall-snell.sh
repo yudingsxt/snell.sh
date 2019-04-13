@@ -6,4 +6,5 @@ systemctl disable snell
 rm -f /ect/systemd/snell.service
 rm -f /usr/bin/snell-server
 rm -f /etc/snell/snell-server.conf
-rmdir -f /etc/snell/
+rmdir /etc/snell/
+echo -e "Snell \033[1;32m 卸载完成 \033[0m"
