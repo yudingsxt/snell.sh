@@ -59,13 +59,6 @@ if [ -f ${CONF} ]; then
     echo "============================="
 
   fi
-  echo -e  "\033[1;33m Snell 配置 \033[0m"
-  echo "============================="
-  echo "[snell-server]"
-  echo "listen = 0.0.0.0:${snell_port}"
-  echo "psk = ${PSK}"
-  echo "obfs = ${snell_obfs}"
-  echo "============================="
 
   mkdir /etc/snell/
   echo "Generating new config..."
@@ -73,6 +66,19 @@ if [ -f ${CONF} ]; then
   echo "listen = 0.0.0.0:${snell_port}" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
   echo "obfs = ${snell_obfs}" >>${CONF}
+
+  echo
+  echo
+  echo
+
+
+  echo -e  "\033[1;33m Snell 配置 \033[0m"
+  echo "============================="
+  echo "[snell-server]"
+  echo "listen = 0.0.0.0:${snell_port}"
+  echo "psk = ${PSK}"
+  echo "obfs = ${snell_obfs}"
+  echo "============================="
 fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
