@@ -16,6 +16,15 @@ mv -f snell-server /usr/local/bin/
 if [ -f ${CONF} ]; then
   echo "Found existing config..."
 
+  echo
+  echo
+  echo
+  
+  echo -e  "\033[1;33m Snell 配置 \033[0m"
+  echo "============================="
+  cat /etc/snell/snell-server.conf
+  echo "============================="
+
   else
   if [ -z ${snell_port} ]; then
     echo -e "请输入 Snell 端口 [1-65535]"
