@@ -1,8 +1,8 @@
 # Snell安装脚本
 
-+ [x] 端口：默认值：`12312`    可自定义：[1-65535] 
-+ [x] Obfs：默认值：`tls`         可自定义：[tls/http/off]
-+ [x] PSK：为随机生成的16位字符
++ [x] 端口：`12312`    可自定义：[1-65535] 
++ [x] Obfs：`tls`         可自定义：[tls/http/off]
++ [x] PSK：随机生成的16位字符
 
 ---
 
@@ -24,8 +24,6 @@ wget --no-check-certificate -O snell.sh https://raw.githubusercontent.com/ydzydz
 chmod +x snell.sh
 ./snell.sh
 ```
-
-**默认端口号`12312`，如需修改请安装  Snell  时输入端口号**
 
 ---
 
@@ -66,14 +64,6 @@ systemctl stop snell
 
 ---
 
-### 捷径
-
-照着大佬的脚本撸了个[捷径](https://github.com/ydzydzydz/snell.sh/raw/master/Snell%E5%AE%89%E8%A3%85%26%E5%8D%B8%E8%BD%BD%26%E7%AE%A1%E7%90%86.shortcut)，直接运行即可安装&卸载&查看&管理状态
-
-**但是不能安装时自定义端口，默认端口为`13254`，安装结束后会将 Snell 配置导出到备忘录，复制到 Surge 中即可使用**
-
----
-
 ### 修改
 
 查看 Snell 配置文件
@@ -104,6 +94,14 @@ obfs = tls
 ### 效果
 
 <img width="80%" src="https://raw.githubusercontent.com/ydzydzydz/blogphoto/master/snell/1.jpg" />
+
+---
+
+### 捷径
+
+照着大佬的脚本撸了个[捷径](https://github.com/ydzydzydz/snell.sh/raw/master/Snell%E5%AE%89%E8%A3%85%26%E5%8D%B8%E8%BD%BD%26%E7%AE%A1%E7%90%86.shortcut)，直接运行即可安装&卸载&查看&管理状态
+
+**但是不能安装时自定义端口，默认端口为`13254`，安装结束后会将 Snell 配置导出到备忘录，复制到 Surge 中即可使用**
 
 ---
 
