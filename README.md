@@ -1,6 +1,6 @@
 # Snell安装脚本
 
-+ [x] 端口：`12312`    可自定义：[1-65535] 
++ [x] 端口：`14250`    可自定义：[1-65535] 
 + [x] Obfs：`tls`         可自定义：[tls/http/off]
 + [x] PSK：随机生成的16位字符
 + [x] 若已安装 Snell，直接输出配置
@@ -13,7 +13,7 @@
 Debian & Ubuntu 用户请运行
 
 ```
-wget --no-check-certificate -O snell.sh https://raw.githubusercontent.com/ydzydzydz/snell.sh/master/snell-port.sh
+wget --no-check-certificate -O snell.sh https://raw.githubusercontent.com/yudingsxt/snell.sh/master/snell-port.sh
 chmod +x snell.sh
 ./snell.sh
 ```
@@ -21,7 +21,7 @@ chmod +x snell.sh
 Centos & RedHat 用户请运行
 
 ```
-wget --no-check-certificate -O snell.sh https://raw.githubusercontent.com/ydzydzydz/snell.sh/master/snell.centos-port.sh
+wget --no-check-certificate -O snell.sh https://raw.githubusercontent.com/yudingsxt/snell.sh/master/snell.centos-port.sh
 chmod +x snell.sh
 ./snell.sh
 ```
@@ -33,7 +33,7 @@ chmod +x snell.sh
 卸载方法：
 
 ```
-wget --no-check-certificate -O uninstall-snell.sh https://raw.githubusercontent.com/ydzydzydz/snell.sh/master/uninstall-snell.sh
+wget --no-check-certificate -O uninstall-snell.sh https://raw.githubusercontent.com/yudingsxt/snell.sh/master/uninstall-snell.sh
 chmod +x uninstall-snell.sh
 ./uninstall-snell.sh
 ```
@@ -83,7 +83,7 @@ vi 编辑如下配置即可
 
 ```
 [snell-server]
-listen = 0.0.0.0:12312
+listen = 0.0.0.0:14250
 psk = x3IBaVj9K6a6PAzF
 obfs = tls
 ```
