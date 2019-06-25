@@ -28,7 +28,7 @@ if [ -f ${CONF} ]; then
   if [ -z ${snell_port} ]; then
     echo -e "请输入 Snell 端口 [1-65535]"
     read -e -p "(默认: 12312):" snell_port
-    [[ -z "${snell_port}" ]] && snell_port="12312"
+    [[ -z "${snell_port}" ]] && snell_port="14250"
 
 		echo "============================="
 		echo -e "端口 : \033[43;35m ${snell_port} \033[0m"
