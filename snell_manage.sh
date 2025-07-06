@@ -993,9 +993,9 @@ geo_check() {
 updateShell(){
     geo_check
     if [ ! -z "$isCN" ]; then
-        shell_url="https://gitee.com/ten/Snell/raw/master/Snell.sh"
+        shell_url="https://raw.githubusercontent.com/yudingsxt/snell.sh/refs/heads/master/snell_manage.sh"
     else
-        shell_url="https://raw.githubusercontent.com/xOS/Snell/master/Snell.sh"
+        shell_url="https://raw.githubusercontent.com/yudingsxt/snell.sh/refs/heads/master/snell_manage.sh"
     fi
 
     echo -e "当前版本为 [ ${sh_ver} ]，开始检测最新版本..."
