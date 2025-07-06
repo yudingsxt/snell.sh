@@ -5,7 +5,7 @@ export PATH
 #=================================================
 #	System Required: CentOS/Debian/Ubuntu
 #	Description: Snell Server 管理脚本
-#	Author: 翠花
+#	Author: 翠花,我们是夜晚
 #	WebSite: https://about.nange.cn
 #=================================================
 
@@ -241,19 +241,42 @@ installSnell() {
 	else
 		[[ -e "${snell_bin}" ]] && rm -rf "${snell_bin}"
 	fi
-	echo -e "选择安装版本${Yellow_font_prefix}[2-5]${Font_color_suffix} 
+	echo -e "选择安装版本${Yellow_font_prefix}[1-5]${Font_color_suffix} 
 ==================================
-${Green_font_prefix} 2.${Font_color_suffix} v2  ${Green_font_prefix} 3.${Font_color_suffix} v3  ${Green_font_prefix} 4.${Font_color_suffix} v4  ${Green_font_prefix} 5.${Font_color_suffix} v5${Yellow_font_prefix}(beta)${Font_color_suffix}
+${Green_font_prefix} 1.${Font_color_suffix} 指定版本 ${Green_font_prefix} 2.${Font_color_suffix} v2  ${Green_font_prefix} 3.${Font_color_suffix} v3  ${Green_font_prefix} 4.${Font_color_suffix} v4  ${Green_font_prefix} 5.${Font_color_suffix} v5${Yellow_font_prefix}(beta)${Font_color_suffix}
 =================================="
-	read -e -p "(默认：4.v4)：" ver
-	[[ -z "${ver}" ]] && ver="4"
-	if [[ ${ver} == "2" ]]; then
+	read -e -p "(默认：4.v4)：" ver_choice
+	[[ -z "${ver_choice}" ]] && ver_choice="4"
+	if [[ ${ver_choice} == "1" ]]; then
+		read -e -p "请输入要安装的 Snell 版本号 (例如: 4.0.1): " custom_version
+		if [[ -z "${custom_version}" ]]; then
+			echo -e "${Error} 版本号不能为空！"
+			exit 1
+		fi
+		downloadSnell "${custom_version}" "v${custom_version} 自定义版"
+		if [[ $? -eq 0 ]]; then
+			setPort
+			setPSK
+			setObfs
+			setIpv6
+			setTFO
+			setDNS
+			setVer # Allow user to set the version in config
+			setupService
+			writeConfig
+			startSnell
+			viewConfig
+		else
+			echo -e "${Error} 指定版本安装失败。"
+			exit 1
+		fi
+	elif [[ ${ver_choice} == "2" ]]; then
 		installSnellV2
-	elif [[ ${ver} == "3" ]]; then
+	elif [[ ${ver_choice} == "3" ]]; then
 		installSnellV3
-	elif [[ ${ver} == "4" ]]; then
+	elif [[ ${ver_choice} == "4" ]]; then
 		installSnellV4
-	elif [[ ${ver} == "5" ]]; then
+	elif [[ ${ver_choice} == "5" ]]; then
 		installSnellV5
 	else
 		installSnellV4
@@ -710,12 +733,34 @@ updateSnell(){
 
     if [[ "${current_version}" == "${latest_version}" ]]; then
         echo -e "${Info} 当前已是最新版本，无需更新。"
-        sleep 3s
-        startMenu
-        return
     fi
 
-    echo -e "${Tip} 确定要更新到 v${latest_version} 吗？(y/N)"
+    echo -e "请选择更新方式:"
+    echo -e " 1. 更新到最新版本 v${latest_version}"
+    echo -e " 2. 更新到指定版本"
+    read -e -p "(默认: 1):" update_choice
+    [[ -z "${update_choice}" ]] && update_choice="1"
+
+    target_version=""
+    if [[ "${update_choice}" == "1" ]]; then
+        target_version="${latest_version}"
+    elif [[ "${update_choice}" == "2" ]]; then
+        read -e -p "请输入要更新到的版本号 (例如: 4.0.1):" custom_version
+        if [[ -z "${custom_version}" ]]; then
+            echo -e "${Error} 版本号不能为空！"
+            sleep 2s
+            startMenu
+            return 1
+        fi
+        target_version="${custom_version}"
+    else
+        echo -e "${Error} 无效的选择！"
+        sleep 2s
+        startMenu
+        return 1
+    fi
+
+    echo -e "${Tip} 确定要更新到 v${target_version} 吗？(y/N)"
     read -e -p "(默认: n):" confirm
     [[ -z "${confirm}" ]] && confirm="n"
 
@@ -733,11 +778,7 @@ updateSnell(){
     fi
 
     # 下载新版本
-    if [[ "$ver" == "4" ]]; then
-        downloadSnell "${snell_v4_version}" "v4 官网源版"
-    elif [[ "$ver" == "5" ]]; then
-        downloadSnell "${snell_v5_version}" "v5 Beta 官网源版"
-    fi
+    downloadSnell "${target_version}" "指定版本"
 
     if [[ $? -eq 0 ]]; then
         echo -e "${Info} 更新成功，正在重启服务..."
@@ -1012,13 +1053,13 @@ Snell Server 管理脚本 ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
 ==============================
  ${Green_font_prefix} 0.${Font_color_suffix} 更新脚本
 ——————————————————————————————
- ${Green_font_prefix} 1.${Font_color_suffix} 安装 Snell Server
+ ${Green_font_prefix} 1.${Font_color_suffix} 安装 Snell Server(内置版本选择)
  ${Green_font_prefix} 2.${Font_color_suffix} 卸载 Snell Server"
     
     # 只有安装了 v4 时才显示 v4 到 v5 更新选项
     if [[ "$show_v4_to_v5_option" == true ]]; then
         echo -e "——————————————————————————————
- ${Green_font_prefix} 3.${Font_color_suffix} 更新 Snell Server
+ ${Green_font_prefix} 3.${Font_color_suffix} 更新 Snell Server(可指定版本)
  ${Green_font_prefix} 4.${Font_color_suffix} v4 更新到 v5${Yellow_font_prefix}(Beta)${Font_color_suffix}
 ——————————————————————————————
  ${Green_font_prefix} 5.${Font_color_suffix} 启动 Snell Server
